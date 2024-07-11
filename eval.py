@@ -233,7 +233,7 @@ def main(args) -> None:
 
     if compile:
         assert not (
-            builder_args.dso_path or builder_args.pte_path
+            builder_args.dso_path or builder_args.pte_path or builder_args.aoti_package_path
         ), "cannot compile exported model"
         global model_forward
         model_forward = torch.compile(
@@ -260,6 +260,8 @@ def main(args) -> None:
     )
     if builder_args.dso_path:
         print(f"For model {builder_args.dso_path}")
+    if builder_args.aoti_package_path:
+        print(f"For model {builder_args.aoti_package_path}")
     elif builder_args.pte_path:
         print(f"For model {builder_args.pte_path}")
     elif builder_args.checkpoint_path:
